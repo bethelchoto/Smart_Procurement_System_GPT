@@ -11,8 +11,8 @@ Before you begin, ensure you have the following installed:
 ## Setting Up the Project
 1. **Clone the Repository**: First, clone this repository to your local machine.
     ```bash
-    git clone <repository-url>
-    cd <repository-name>
+    git clone https://github.com/bethelchoto/Smart_Procurement_System_GPT.git
+    cd Smart_Procurement_System_GPT
     ```
 
 2. **Create a Virtual Environment**: Create a virtual environment for the project. This will isolate your dependencies.
@@ -80,7 +80,7 @@ Before you begin, ensure you have the following installed:
     ```
 
 ## Contributing
-Contributions are welcome! Please feel free to submit a pull request.
+Contributions are welcome! Please feel free to submit a pull request. @bethelchoto
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
