@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h2 class="card-title">Admin Dashboard</h2>
+            <a href="{{ url_for('admin.create_tender') }}" class="btn btn-success">Create New Tender</a>
+        </div>
+        <div class="card-body">
+            <h4 class="mb-3">Manage Tenders</h4>
+            <table class="table table-hover table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Tender Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Deadline</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tender in tenders %}
+                    <tr>
+                        <td>{{ tender.title }}</td> <!-- Assuming 'title' is the correct attribute for tender name -->
+                        <td>{{ tender.description }}</td>
+                        <td>{{ tender.end_date.strftime('%Y-%m-%d') }}</td> <!-- Corrected from tender.deadline to tender.end_date -->
+                        <td>
+                            <span class="badge {% if tender.status == 'open' %}badge-success{% else %}badge-warning{% endif %}">
+                                {{ tender.status.capitalize() }}
+                            </span>
+                        </td>
+
+                        <!-- <td>
+                            <a href="{{ url_for('admin.close_tender', tender_id=tender.id) }}" class="btn btn-warning btn-sm">Close Tender</a>
+                        </td> -->
+
+
+                        <td>
+                            {% if tender.status == 'closed' %}
+                                <a href="{{ url_for('admin.winner_losers', tender_id=tender.id) }}" class="btn btn-success btn-sm">View Rankings</a>
+                            {% else %}
+                                <a href="{{ url_for('admin.close_tender', tender_id=tender.id) }}" class="btn btn-warning btn-sm">Close Tender</a>
+                            {% endif %}
+                        </td>
+                        
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center">No tenders available</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

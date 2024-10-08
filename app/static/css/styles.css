@@ -1,0 +1,107 @@
+/* Basic reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Full height for vertical centering */
+html, body {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Centering the card */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Styling the card */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 30px;
+}
+
+/* Input fields */
+.form-control {
+    padding: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.form-control:focus {
+    background-color: #e9ecef;
+    border-color: #80bdff;
+    outline: none;
+}
+
+/* Labels */
+.form-control-label {
+    font-weight: bold;
+    color: #495057;
+    margin-bottom: 5px;
+}
+
+/* Button styling */
+.btn-success {
+    background-color: #28a745;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Error messages */
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Margin between elements */
+.mb-3 {
+    margin-bottom: 16px;
+}
+
+/* Card title styling */
+.card-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .btn-success {
+        padding: 10px;
+    }
+}
+
+.custom-container {
+    max-width: 1200px; /* Set a maximum width for the container */
+}

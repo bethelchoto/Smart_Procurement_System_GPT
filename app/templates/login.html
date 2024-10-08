@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center min-vh-100 custom-container">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-12"> <!-- Change col-xl-6 to col-xl-12 for full width -->
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-4">
+                    <h3 class="card-title text-center mb-4">Login</h3>
+                    <form method="POST" action="{{ url_for('auth.login') }}">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group mb-3">
+                            {{ form.email.label(class="form-control-label") }}
+                            {{ form.email(class="form-control", placeholder="Enter your email") }}
+                            {% if form.email.errors %}
+                                <div class="text-danger">{{ form.email.errors[0] }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group mb-3">
+                            {{ form.password.label(class="form-control-label") }}
+                            {{ form.password(class="form-control", placeholder="Enter your password") }}
+                            {% if form.password.errors %}
+                                <div class="text-danger">{{ form.password.errors[0] }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group text-center">
+                            {{ form.submit(class="btn btn-success btn-block") }}
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="{{ url_for('auth.register') }}">Don't have an account? Register here.</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

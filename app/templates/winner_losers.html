@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block title %}Tender Evaluation Results{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Tender Decision Results for {{ tender.title }}</h1>
+
+    <!-- Evaluation results table -->
+    <table class="table table-bordered table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th>Company Name</th>
+                <th>Document</th>
+                <th>Status</th>
+                <th>Ranking Score</th>
+                <th>Decision</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Display the winner -->
+            <tr class="winner-row">
+                <td>{{ winner.company_name }}</td>
+                <td><a href="{{ url_for('admin.serve_bid_file', filename=winner.document_path) }}" target="_blank">View Document</a></td> <!-- Display document path as a link -->
+                <td>{{ winner.status }}</td> <!-- Display status -->
+                <td>{{ winner.ranking_score }}</td> <!-- Display ranking score -->
+                <td><span class="badge badge-success">Winner</span></td> <!-- Highlight winner -->
+            </tr>
+
+            <!-- Loop through the losers and display them -->
+            {% for loser in losers %}
+            <tr class="loser-row">
+                <td>{{ loser.company_name }}</td>
+                <td><a href="{{ url_for('admin.serve_bid_file', filename=loser.document_path) }}" target="_blank">View Document</a></td> <!-- Display document path as a link -->
+                <td>{{ loser.status }}</td> <!-- Display status -->
+                <td>{{ loser.ranking_score }}</td> <!-- Display ranking score -->
+                <td><span class="badge badge-danger">Loser</span></td> <!-- Highlight losers -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Back To DashBoard Button -->
+    <a href="{{ url_for('admin.dashboard') }}" class="btn btn-danger">Back</a>
+
+
+</div>
+
+<!-- Bootstrap and JS Links -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}

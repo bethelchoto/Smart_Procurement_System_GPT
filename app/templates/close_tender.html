@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block title %}Close Tender{% endblock %}
+
+{% block content %}
+<h2>Close Tender - {{ tender.title }}</h2>
+<p>Description: {{ tender.description }}</p>
+<p>Submission Deadline: {{ tender.end_date }}</p>
+
+<h3>Bids</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Supplier</th>
+            <th>Bid Document</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bid in bids %}
+        <tr>
+            <td>{{ bid.supplier.company_name }}</td>
+            <td><a href="{{ url_for('admin.serve_bid_file', filename=bid.document_path) }}" target="_blank">View Document</a></td>
+            <td>
+                {% if bid.score %}
+                    {{ bid.score }}
+                {% else %}
+                    <span class="badge badge-secondary">Not Yet Ranked</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<form method="POST" action="{{ url_for('admin.close_tender', tender_id=tender.id) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <button type="submit" class="btn btn-danger">Close and Evaluate</button>
+</form>
+
+{% endblock %}

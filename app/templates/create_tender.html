@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+
+{% block title %}Create Tender{% endblock %}
+
+{% block content %}
+<h2>Create New Tender</h2>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    
+    <div class="form-group">
+        {{ form.title.label(class="form-control-label") }}
+        {{ form.title(class="form-control") }}
+        {% if form.title.errors %}
+            <div class="error-message">{{ form.title.errors[0] }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="form-group">
+        {{ form.description.label(class="form-control-label") }}
+        {{ form.description(class="form-control") }}
+        {% if form.description.errors %}
+            <div class="error-message">{{ form.description.errors[0] }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.required_experience.label(class="form-control-label") }}
+        {{ form.required_experience(class="form-control") }}
+        {% if form.required_experience.errors %}
+            <div class="error-message">{{ form.required_experience.errors[0] }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="form-group">
+        {{ form.tender_number.label(class="form-control-label") }}
+        {{ form.tender_number(class="form-control") }}
+        {% if form.tender_number.errors %}
+            <div class="error-message">{{ form.tender_number.errors[0] }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.price.label(class="form-control-label") }}
+        {{ form.price(class="form-control") }}
+        {% if form.price.errors %}
+            <div class="error-message">{{ form.price.errors[0] }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.delivery_time.label(class="form-control-label") }}
+        {{ form.delivery_time(class="form-control") }}
+        {% if form.delivery_time.errors %}
+            <div class="error-message">{{ form.delivery_time.errors[0] }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.start_date.label(class="form-control-label") }}
+        {{ form.start_date(class="form-control", type="date") }}  <!-- Specify type="date" for HTML input -->
+        {% if form.start_date.errors %}
+            <div class="error-message">{{ form.start_date.errors[0] }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.end_date.label(class="form-control-label") }}
+        {{ form.end_date(class="form-control", type="date") }}  <!-- Specify type="date" for HTML input -->
+        {% if form.end_date.errors %}
+            <div class="error-message">{{ form.end_date.errors[0] }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form.additional_criteria.label(class="form-control-label") }}
+        {{ form.additional_criteria(class="form-control") }}
+        {% if form.additional_criteria.errors %}
+            <div class="error-message">{{ form.additional_criteria.errors[0] }}</div>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-success">Create Tender</button>
+</form>
+{% endblock %}

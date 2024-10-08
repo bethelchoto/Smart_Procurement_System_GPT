@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block title %}Supplier Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>My Bids</h2>
+        <!-- Button to go to available tenders -->
+        <a href="{{ url_for('supplier.tenders') }}" class="btn btn-primary">View Available Tenders</a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>Tender</th>
+                <th>Submitted On</th>
+                <th>Status</th>
+                <th>Decision</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bid in bids %}
+            <tr>
+                <td>{{ bid.tender.title }}</td>
+                <td>{{ bid.submitted_on.strftime('%Y-%m-%d') }}</td>
+                <td>
+                    <span class="badge {% if bid.status == 'accepted' %}badge-success{% else %}badge-secondary{% endif %}">
+                        {{ bid.status.capitalize() }}
+                    </span>
+                </td>
+
+                <td>
+                    <span class="badge {% if bid.decision == 'winner' %}badge-success{% else %}badge-danger{% endif %}">
+                        {{ bid.decision.capitalize() }} 
+                    </span>
+                </td>
+                
+                
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3" class="text-center">No bids submitted</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

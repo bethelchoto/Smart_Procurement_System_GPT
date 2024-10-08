@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block title %}Tenders{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Available Tenders</h2>
+        <a href="{{ url_for('supplier.dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+    
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tender Name</th>
+                <th>Description</th>
+                <th>Submission Deadline</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tender in tenders %}
+            <tr>
+                <td>{{ tender.title }}</td>
+                <td>{{ tender.description }}</td>
+                <td>{{ tender.end_date.strftime('%Y-%m-%d') }}</td>
+                <td>
+                    {% if tender.id in submitted_tender_ids %}
+                        <span class="text-success">You have already submitted a bid</span>
+                    {% else %}
+                        <a href="{{ url_for('supplier.upload_bid', tender_id=tender.id) }}" class="btn btn-primary">Upload Bid</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" class="text-center">No tenders available</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
